@@ -167,6 +167,7 @@ UIImageView *shareWindow;
     if ([dict objectForKey:@"data"] != nil) { //if the data is not nil...
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSDictionary *dataDict = [dict objectForKey:@"data"];
+        appDelegate.thumbnailDataArray = [[NSMutableArray alloc] init];
         NSArray *array = [dataDict objectForKey:@"children"]; //this dictionary object contains a number of 'data' JSON entries that correspond to each post
         for (int i = 0; i < [array count]; i++) { //search through the array and store each post's entry into the array
             NSDictionary *tempDict = [array objectAtIndex:i];
@@ -193,6 +194,7 @@ UIImageView *shareWindow;
             }
         }
         [self reloadTable]; //reload the table now that we have a newly populated array
+        [postDisplayTable setContentOffset:CGPointZero animated:YES];
     }
 }
 
