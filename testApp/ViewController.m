@@ -46,8 +46,6 @@ UIImageView *shareWindow;
     //set the search bar text
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     tableDataArray = [[NSMutableArray alloc] init];
-    [self setSearchBarText:subredditSearchBar text:appDelegate.storedSearchString];
-    [self handleSearch:subredditSearchBar];
     postDisplayTable.scrollEnabled = TRUE;
     
     //make the views clear and hide the table (will reappear when the data is initially loaded)
@@ -62,6 +60,8 @@ UIImageView *shareWindow;
     [self.mainView addGestureRecognizer:tapGestureRecognize];
     
     [self addPullToRefreshHeader];
+    [self setSearchBarText:subredditSearchBar text:appDelegate.storedSearchString];
+    [self handleSearch:subredditSearchBar];
 }
 
 - (void)viewDidUnload
@@ -193,8 +193,8 @@ UIImageView *shareWindow;
                 [appDelegate.thumbnailDataArray addObject:[UIImage imageNamed:@"no_photo_available.jpg"]];
             }
         }
-        [self reloadTable]; //reload the table now that we have a newly populated array
         [postDisplayTable setContentOffset:CGPointZero animated:YES];
+        [self reloadTable]; //reload the table now that we have a newly populated array
     }
 }
 
@@ -204,9 +204,10 @@ UIImageView *shareWindow;
 //reload the table data and display the table if it was previously hidden
 - (void)reloadTable
 {
-    if (postDisplayTable.hidden == TRUE)
+    if (postDisplayTable.hidden == TRUE) {
         postDisplayTable.hidden = FALSE;
-    [postDisplayTable reloadData];
+    }
+    [postDisplayTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 //determine the lenght of the table
@@ -268,7 +269,6 @@ UIImageView *shareWindow;
     float combinedHeight = sizeTitle.height + sizeAuthor.height + 15.0f;
     combinedHeight = MAX(combinedHeight, 60.0f);
     float temp = combinedHeight - 50.0f;
-    temp = temp / 2.0f;
     
     //set the remaining parameters of the userLabel and size it to fit the text
     [userLabel setText:author];
@@ -308,6 +308,7 @@ UIImageView *shareWindow;
     
     cell.backgroundColor = [UIColor clearColor]; //make the background of the cell clear so you can see the backgroundView
     
+    [cell setNeedsLayout];
     return cell;
 }
 
