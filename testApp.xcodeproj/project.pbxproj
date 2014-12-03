@@ -43,6 +43,7 @@
 		256AEF291794E5B800ABBBA2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256AEF281794E5B800ABBBA2 /* CoreGraphics.framework */; };
 		256AF29117979ECC00ABBBA2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256AF29017979ECC00ABBBA2 /* MessageUI.framework */; };
 		256AF29F1797AFD700ABBBA2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256AF29E1797AFD700ABBBA2 /* QuartzCore.framework */; };
+		25B48D671A2EBEEB008A4F1C /* arrow_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 25B48D661A2EBEEB008A4F1C /* arrow_flipped.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		256AEF281794E5B800ABBBA2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		256AF29017979ECC00ABBBA2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		256AF29E1797AFD700ABBBA2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		25B48D661A2EBEEB008A4F1C /* arrow_flipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_flipped.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		2564BEA4179DCBC600E325AF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				25B48D661A2EBEEB008A4F1C /* arrow_flipped.png */,
 				2564BE51179DCB8A00E325AF /* arrow.png */,
 				2564BE52179DCB8A00E325AF /* iTunesArtwork.png */,
 				2564BE54179DCB8A00E325AF /* no_photo_available.jpg */,
@@ -195,8 +198,8 @@
 				2564BE59179DCB8A00E325AF /* AppDelegate.m */,
 				2564BE81179DCB8A00E325AF /* ViewController.h */,
 				2564BE82179DCB8A00E325AF /* ViewController.m */,
-				2564BEAA179DCD0300E325AF /* PullToRefresh Files */,
 				2564BEA6179DCBF200E325AF /* JSON Files */,
+				2564BEAA179DCD0300E325AF /* PullToRefresh Files */,
 				2564BEA4179DCBC600E325AF /* Images */,
 				2564BEA5179DCBDE00E325AF /* Supporting Files */,
 				256AEF231794E5B800ABBBA2 /* Frameworks */,
@@ -275,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25B48D671A2EBEEB008A4F1C /* arrow_flipped.png in Resources */,
 				2564BE83179DCB8A00E325AF /* arrow.png in Resources */,
 				2564BE84179DCB8A00E325AF /* iTunesArtwork.png in Resources */,
 				2564BE85179DCB8A00E325AF /* MainWindow.xib in Resources */,
@@ -395,7 +399,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "testApp/testApp-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/testApp/testApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = testApp;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "54206991-AFF3-4F64-A666-8C923D62FC8E";
@@ -410,7 +414,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "testApp/testApp-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/testApp/testApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = testApp;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

@@ -62,6 +62,10 @@ UIImageView *shareWindow;
     [self addPullToRefreshHeader];
     [self setSearchBarText:subredditSearchBar text:appDelegate.storedSearchString];
     [self handleSearch:subredditSearchBar];
+    mainView.autoresizesSubviews = true;
+    mainView.autoresizingMask = true;
+    NSLog(@"Image scale : %f",[[UIImage imageNamed:@"bg.jpg"] scale]);
+    backgroundImageView.autoresizesSubviews = true;
 }
 
 - (void)viewDidUnload
@@ -505,20 +509,14 @@ UIImageView *shareWindow;
     refreshLabel.textAlignment = UITextAlignmentCenter;
     refreshLabel.textColor = [UIColor whiteColor];
     
-    //create the arrow object
-    refreshArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-    refreshArrow.frame = CGRectMake(floorf((REFRESH_HEADER_HEIGHT - 27) / 2),
-                                    (floorf(REFRESH_HEADER_HEIGHT - 44) / 2),
-                                    27, 44);
-    
     //create the loading progress spinner
     refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     refreshSpinner.frame = CGRectMake(floorf(floorf(REFRESH_HEADER_HEIGHT - 20) / 2), floorf((REFRESH_HEADER_HEIGHT - 20) / 2), 20, 20);
     refreshSpinner.hidesWhenStopped = YES;
+    refreshSpinner.color = [UIColor whiteColor];
     
-    //add the label, arrow and spinner to the header view, then add the header view to the table's view
+    //add the label and spinner to the header view, then add the header view to the table's view
     [refreshHeaderView addSubview:refreshLabel];
-    [refreshHeaderView addSubview:refreshArrow];
     [refreshHeaderView addSubview:refreshSpinner];
     [self.postDisplayTable addSubview:refreshHeaderView];
 }
@@ -538,16 +536,14 @@ UIImageView *shareWindow;
         else if (scrollView.contentOffset.y >= -REFRESH_HEADER_HEIGHT)
             self.postDisplayTable.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
     } else if (isDragging && scrollView.contentOffset.y < 0) {
-        // Update the arrow direction and label
+        // Update the label
         [UIView animateWithDuration:0.25 animations:^{
             if (scrollView.contentOffset.y < -REFRESH_HEADER_HEIGHT) {
                 // User is scrolling above the header
                 refreshLabel.text = self.textRelease;
-                refreshArrow.transform = CGAffineTransformMakeRotation(M_PI); //flip the arrow upside down
             } else { 
                 // User is scrolling somewhere within the header
                 refreshLabel.text = self.textPull;
-                refreshArrow.transform = CGAffineTransformMakeRotation(0); //flip the arrow back
             }
         }];
     }
@@ -571,7 +567,6 @@ UIImageView *shareWindow;
     [UIView animateWithDuration:0.3 animations:^{
         self.postDisplayTable.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
         refreshLabel.text = self.textLoading;
-        refreshArrow.hidden = TRUE;
         [refreshSpinner startAnimating];
     }];
     
@@ -586,18 +581,16 @@ UIImageView *shareWindow;
     // Hide the header
     [UIView animateWithDuration:0.3 animations:^{
         self.postDisplayTable.contentInset = UIEdgeInsetsZero;
-        [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
     } 
                      completion:^(BOOL finished) {
                          [self performSelector:@selector(stopLoadingComplete)];
                      }];
 }
 
-//bring the arrow back and stop the spinner
+//stop the spinner
 - (void)stopLoadingComplete {
     // Reset the header
     refreshLabel.text = self.textPull;
-    refreshArrow.hidden = FALSE;
     [refreshSpinner stopAnimating];
 }
 

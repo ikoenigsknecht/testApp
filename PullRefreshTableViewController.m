@@ -114,11 +114,13 @@
             if (scrollView.contentOffset.y < -REFRESH_HEADER_HEIGHT) {
                 // User is scrolling above the header
                 refreshLabel.text = self.textRelease;
-                [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
+                //[refreshArrow layer].transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
+                refreshArrow.image = [UIImage imageNamed:@"arrow.png"];
             } else { 
                 // User is scrolling somewhere within the header
                 refreshLabel.text = self.textPull;
-                [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
+                //[refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
+                refreshArrow.image = [UIImage imageNamed:@"arrow_flipped.png"];
             }
         }];
     }
